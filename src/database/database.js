@@ -1,14 +1,14 @@
 import { config } from "dotenv";
-import { Pool } from "pg";
+import { Client } from "pg";
 
 //Inicia leitura do arquivo .env
-config();
+config({ path: ['../.env', './.env'] });
 
 //Configuração do banco.
-const client = new Pool({
+const client = new Client({
     user: process.env.USER,
     password: process.env.PASSWORD,
-    host: process.env.host,
+    host: process.env.HOST,
     port: process.env.PORT,
     database: process.env.DATABASE
 });
