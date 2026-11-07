@@ -1,10 +1,12 @@
 import express, { json } from 'express';
+import cors from 'cors';
 import { getProjects, getAppInStore, getToken, addProject, checkProject, addProjectImages, getCertification, addCertification, getExperiences, addExperiences } from './database/database.js';
 //Inicia aplicação.
 const app = express();
-
 //Usa json.
 app.use(json());
+//Libera acesso para todas as origens.
+app.use(cors({ origin: "*" }))
 
 //Definição da porta.
 const port = 3000;
@@ -21,6 +23,11 @@ async function checkToken(token) {
         return false;
     }
 }
+
+//Redireciona para (/projetos).
+app.get('/', (request, response) => {
+    response.redirect('/projetos')
+})
 
 //Obtém os projetos.
 app.get('/projetos', async (request, response) => {
