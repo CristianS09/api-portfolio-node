@@ -1,6 +1,6 @@
 import express, { json } from 'express';
 import cors from 'cors';
-import { getProjects, getAppInStore, getToken, addProject, checkProject, addProjectImages, getCertification, addCertification, getExperiences, addExperiences } from './database/database.js';
+import { getProjects, getAppInStore, getToken, addProject, checkProject, addProjectImages, getCertification, addCertification, getExperiences, addExperiences, getStacks } from './database/database.js';
 //Inicia aplicação.
 const app = express();
 //Usa json.
@@ -71,6 +71,20 @@ app.get('/certificados', async (request, response) => {
     }
     catch (err) {
         console.log("Ocorreu um erro ao obter os certificados: " + err);
+        response.sendStatus(500);
+    }
+})
+
+//Obtém stacks
+app.get('/projetos/stacks', async (request, response) => {
+    try {
+        //Obtém stacks da base.
+        const result = await getStacks();
+        //Retorna responde com o resultado.
+        response.json(result);
+    } catch (err) {
+        //Retorna com erro caso ocorra.
+        console.log('Ocorreu um erro ao obter as stacks.' + err);
         response.sendStatus(500);
     }
 })
