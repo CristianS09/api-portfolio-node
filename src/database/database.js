@@ -48,7 +48,10 @@ async function getImages() {
 
 //Obtém stacks do projeto.
 async function getStacks() {
-    const result = await connect.query(`SELECT nome_stack,cor FROM stacks_tb`)
+    //Obtém stacks do projeto;
+    const result = await connect.query(`
+    SELECT stacks_tb.nome_stack,stacks_tb.cor,projetos_stacks_tb.id_projeto FROM stacks_tb
+    INNER JOIN projetos_stacks_tb on stacks_tb.id = projetos_stacks_tb.id_stacks`)
 
     //Retorna stacks do projeto.    
     return result.rows;
@@ -66,9 +69,7 @@ async function getProjects() {
     //Obtém imagens do projeto.
     const images = await getImages();
     //Obtém stacks do projeto;
-    const stacks = await connect.query(`
-    SELECT stacks_tb.nome_stack,stacks_tb.cor,projetos_stacks_tb.id_projeto FROM stacks_tb
-    INNER JOIN projetos_stacks_tb on stacks_tb.id = projetos_stacks_tb.id_stacks`)
+    const stacks = await getStacks();
 
     const result = projects.rows.map((project) => {
         //Cria novo objeto com a lista de imagem para cada projeto.
@@ -81,7 +82,7 @@ async function getProjects() {
             url_hospedagem: project.url_hospedagem,
             //Obtém imagem de acordo com o id do projeto.
             imagens: images.filter((image) => image.id_projeto === project.id_projeto),
-            stacks: stacks.rows.filter((stack) => stack.id_projeto === project.id_projeto),
+            stacks: stacks.filter((stack) => stack.id_projeto === project.id_projeto),
         }
     });
 
