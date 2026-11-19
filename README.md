@@ -1,26 +1,70 @@
 API que retorna dados pro meu portfólio pessoal:
-
 https://cristian-dev-portfolio.vercel.app/
 
-Instalação:
+## EndPoints
+<span style="color:green">GET</span>
+|
+<span style="color:orange">POST</span>
+<br>
+<ul>
 
-•Faça um git clone utilizando a URL do projeto. 
+<li>
+<strong>/projetos</strong>
+</li>
 
-•Entre na pasta do projeto usando cd (nome da posta do projeto);
+<li>
+<strong>/experiencias</strong>
+-> Experiências profissionas.
+</li>
 
-•Rode npm i(ou npm install).
+<li>
+<strong>
+/certificados
+</strong>
+</li>
+</ul>
 
-• Abra a pasta src(cd src).
+<span style="color:green">GET</span>
 
-• Rode (npm server.js).
+<ul>
 
-• Acesse localhos://3000.
+<li>
+<strong>
+/projetos/appsloja
+</strong>
+-> Informações dos aplicativos na loja.
+</li>
 
-Link da api hospedada: 
+<li>
+<strong>
+/projetos/stacks
+</strong>
+-> Stacks utilizadas nos projetos.
+</li>
+
+</ul>
+
+<br>
+
+<span style="color:orange">POST</span>
+<ul>
+
+<li>
+<strong>/projetos/imagens</strong>
+</li>
+</ul>
+
+<br>
+<strong>Obs</strong>: 
+Os métodos POST só podem ser utilizados usando um token interno, caso contrário a API irá retornar com erro.
+
+
+### Link da api hospedada: 
 
 https://api-portfolio-node-pied.vercel.app/projetos
 
 
-Obs: 
-Os métodos POST só podem ser utilizados usando um token interno, caso contrário a API irá retornar com erro.
+## Diagrama das tabelas:
+<img src="./diagrams/mapeamento-tabelas.png" style="border-radius:8px">
+<img src="./diagrams/mapeamento-tabelas2.png" style="border-radius:8px">
 
